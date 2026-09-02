@@ -4,6 +4,8 @@ public class Negocio {
 
 	private String nombre;
 	private Maquina maquinaA;
+	private int ultimoCodigo = 100;
+	
 	
 	public Negocio() {
 		
@@ -29,5 +31,20 @@ public class Negocio {
 		this.maquinaA = maquinaA;
 	}
 	
+	public void asignarCodigoCliente (Cliente cliente) {
+		
+		cliente.setCodigo(ultimoCodigo);
+		ultimoCodigo++;
+	}
+	
+	public void cargarMaquina() {
+		maquinaA.llenarMaquina();
+	}
+	
+	public void consumirCervezaMaquinaA (Cliente cliente, double ml) {
+		
+		double valor = maquinaA.servirCerveza(ml);
+		cliente.setTotalConsumido(cliente.getTotalConsumido() + valor);
+	}
 	
 }

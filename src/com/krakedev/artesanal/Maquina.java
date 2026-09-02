@@ -77,13 +77,13 @@ public class Maquina {
 	
 	public void llenarMaquina() {
 		
-		this.cantidadActual = this.capacidadMaxima -200;
+		this.cantidadActual = this.capacidadMaxima -100;
 	}
 	
 	public boolean recargarCerveza(double cantidad) {
 		
 		double limitePermitido;
-		limitePermitido = capacidadMaxima -200;
+		limitePermitido = capacidadMaxima -100;
 		
 		if(cantidadActual + cantidad <= limitePermitido) {
 			
