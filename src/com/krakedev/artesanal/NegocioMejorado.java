@@ -28,12 +28,22 @@ public class NegocioMejorado {
         return "M-" + numeroAleatorio;
     }
     
- // 4. Método agregarMaquina
-    public void agregarMaquina(String nombreCerveza, String descripcion, double precioPorMl) {
+ // 7. Validación de duplicados en agregarMaquina
+    public boolean agregarMaquina(String nombreCerveza, String descripcion, double precioPorMl) {
         String codigo = generarCodigo();
-        // Usamos el constructor de Maquina que recibe 4 parámetros
-        Maquina nuevaMaquina = new Maquina(codigo, nombreCerveza, descripcion, precioPorMl);
-        maquinas.add(nuevaMaquina);
+        
+        // Validamos si ya existe una máquina con el código generado
+        Maquina existente = recuperarMaquina(codigo);
+        
+        if (existente == null) {
+            // No existe, entonces la agregamos
+            Maquina nuevaMaquina = new Maquina(codigo, nombreCerveza, descripcion, precioPorMl);
+            maquinas.add(nuevaMaquina);
+            return true; // agregado
+        } else {
+            // Ya existe, no se agrega
+            return false; // duplicado
+        }
     }
 
     // 5. Método cargarMaquinas
