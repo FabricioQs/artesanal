@@ -67,7 +67,7 @@ public class Maquina {
 		String mensaje;
 		
 		mensaje = "Codigo: " + codigo + 
-				"Nombre de cerveza: " + nombreCerveza
+				" Nombre de cerveza: " + nombreCerveza
 				+ " , Descipcion: " + descripcion +
 				" , Preicio por Ml: " + precioPorMl +
 				" , Capacidad Máxima: " + capacidadMaxima +
