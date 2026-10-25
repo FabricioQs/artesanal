@@ -114,4 +114,31 @@ public class NegocioMejorado {
         }
         return null;
     }
+    
+ // 16. Método registrarConsumo (Acumula el valor en el cliente)
+    public void registrarConsumo(Cliente cliente, double valor) {
+        double acumulado = cliente.getTotalConsumido() + valor;
+        cliente.setTotalConsumido(acumulado);
+    }
+
+    // 15, 17. Método consumirCerveza (Busca, sirve e integra con registrarConsumo)
+    public void consumirCerveza(int codigoCliente, String codigoMaquina, double cantidad) {
+        Maquina maquina = recuperarMaquina(codigoMaquina);
+        Cliente cliente = buscarClientePorCodigo(codigoCliente);
+        
+        // Validamos que ambos existan para evitar errores
+        if (maquina != null && cliente != null) {
+            double valorAPagar = maquina.servirCerveza(cantidad);
+            registrarConsumo(cliente, valorAPagar);
+        }
+    }
+
+    // 19. Método consultarValorVendido (Suma los consumos de todos los clientes)
+    public double consultarValorVendido() {
+        double totalVendido = 0;
+        for (int i = 0; i < clientes.size(); i++) {
+            totalVendido += clientes.get(i).getTotalConsumido();
+        }
+        return totalVendido;
+    }
 }
