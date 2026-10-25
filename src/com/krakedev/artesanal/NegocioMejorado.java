@@ -2,7 +2,10 @@ package com.krakedev.artesanal;
 
 import java.util.ArrayList;
 
+
 public class NegocioMejorado {
+	
+	private int ultimoCodigoCliente = 1;
     
     // 1. Agregar atributo maquinas
     private ArrayList<Maquina> maquinas;
@@ -58,6 +61,55 @@ public class NegocioMejorado {
         for (int i = 0; i < maquinas.size(); i++) {
             if (maquinas.get(i).getCodigo().equals(codigo)) {
                 return maquinas.get(i);
+            }
+        }
+        return null;
+    }
+    
+    // 1. Inicializar la lista para evitar el NullPointerException
+    private ArrayList<Cliente> clientes = new ArrayList<>();
+
+    // Getters y setters para clientes
+    public ArrayList<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(ArrayList<Cliente> clientes) {
+        this.clientes = clientes;
+    }
+    
+    
+    
+    
+    // Agrega esto junto a tus otros atributos al inicio de la clase NegocioMejorado:
+    // private int ultimoCodigoCliente = 1;
+
+    // 9. Método registrarCliente
+    public void registrarCliente(String nombre, String cedula) {
+        Cliente nuevoCliente = new Cliente(nombre, cedula);
+        nuevoCliente.setCodigo(ultimoCodigoCliente);
+        ultimoCodigoCliente++;
+        
+        // Aquí es donde va a explotar porque 'clientes' es null
+        clientes.add(nuevoCliente);
+    }
+    
+    // 13. Método buscarClientePorCedula
+    public Cliente buscarClientePorCedula(String cedula) {
+        for (int i = 0; i < clientes.size(); i++) {
+            if (clientes.get(i).getCedula().equals(cedula)) {
+                return clientes.get(i);
+            }
+        }
+        return null;
+    }
+
+    // 14. Método buscarClientePorCodigo
+    public Cliente buscarClientePorCodigo(int codigo) {
+        for (int i = 0; i < clientes.size(); i++) {
+            // Como el código es int, usamos == en lugar de .equals()
+            if (clientes.get(i).getCodigo() == codigo) {
+                return clientes.get(i);
             }
         }
         return null;

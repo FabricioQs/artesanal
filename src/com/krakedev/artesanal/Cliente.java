@@ -8,6 +8,7 @@ public class Cliente {
 	private double totalConsumido;
 	
 	
+	
 	public Cliente (String nombre, String cedula) {
 		this.nombre = nombre;
 		this.cedula = cedula;
